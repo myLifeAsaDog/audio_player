@@ -1,7 +1,8 @@
 <template>
   <main role="main">
-    <canvas ref="visualizer" width="230" height="100"></canvas>
-    <TimeCount :current="elapsedTime" :duration="decodedAudioBuffer.duration" />
+    <visualizer ref="visualizer" :id="visualizerId" :analyser-node="analyserNode" />
+    <time-count :current="elapsedTime" :duration="decodedAudioBuffer.duration" />
+    <meter :value="elapsedTime" min="0" :max="decodedAudioBuffer.duration||1" />
     <button type="button"
       @click="handleCickResumeAndSuspend">{{ buttonLabel }}</button>
     <p>
@@ -32,21 +33,18 @@
 </template>
 
 <script>
+import Visualizer from './Visualizer'
 import TimeCount from './TimeCount'
 
 const DEFAULT_VOLUME = 0.3
 const DEFAULT_PAN = 0
 const DEFAULT_PLAYBACK_RATE = 1.0
 const ANALYSER_FFT_SIZE = 64
-const VISUALIZER_SIZE = 21 /** num. of visualizer bar  */
 
 export default {
   name: 'index',
-  components: { TimeCount },
+  components: { Visualizer, TimeCount },
   computed: {
-    visualizerSize () {
-      return VISUALIZER_SIZE
-    },
     buttonLabel () {
       return this.isPlaying ? 'PAUSE' : 'PLAY'
     }
@@ -65,7 +63,6 @@ export default {
       gainNode: null,
       panNode: null,
       analyserNode: null,
-      canvasContext: null,
       isPlaying: false,
       currentTimeId: null,
       visualizerId: null
@@ -73,9 +70,6 @@ export default {
   },
   created () {
     this.initialize()
-  },
-  mounted () {
-    this.canvasContext = this.$refs.visualizer.getContext('2d')
   },
   methods: {
     initialize () {
@@ -129,24 +123,8 @@ export default {
       this.getCurrentTime()
       this.offsetTme = this.audioContext.currentTime
 
-      this.renderCanvas()
+      this.$refs.visualizer.renderCanvas()
       this.isPlaying = true
-    },
-    renderCanvas () {
-      const spectrums = new Uint8Array(this.analyserNode.frequencyBinCount)
-      this.analyserNode.getByteFrequencyData(spectrums)
-
-      const clientHeight = this.$refs.visualizer.height
-      const clientWidth = this.$refs.visualizer.width
-      this.canvasContext.clearRect(0, 0, clientWidth, clientHeight)
-      this.canvasContext.fillStyle = '#2e8b57'
-
-      for (let i = 0; i < VISUALIZER_SIZE; i++) {
-        const barHeight = spectrums[i] / 3
-        this.canvasContext.fillRect(i * 11, clientHeight - barHeight, 10, barHeight)
-      }
-
-      this.visualizerId = requestAnimationFrame(this.renderCanvas)
     },
     handleVolume (e) {
       this.gainNode.gain.value = e.target.value

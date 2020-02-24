@@ -1,7 +1,6 @@
 <template>
   <section class="time-display">
     <p>{{ elapsedTime.min|zeroPadding }}:{{ elapsedTime.sec|zeroPadding }} / {{ durationTime.min|zeroPadding }}:{{ durationTime.sec|zeroPadding }}</p>
-    <meter :value="current" min="0" :max="duration" />
   </section>
 </template>
 
