@@ -1,6 +1,6 @@
 <template>
   <main role="main">
-    <visualizer ref="visualizer" :id="visualizerId" :analyser-node="analyserNode" />
+    <visualizer ref="visualizer" :analyser-node="analyserNode" />
     <time-count :current="elapsedTime" :duration="decodedAudioBuffer.duration" />
     <meter :value="elapsedTime" min="0" :max="decodedAudioBuffer.duration||1" />
     <button type="button"
@@ -64,8 +64,7 @@ export default {
       panNode: null,
       analyserNode: null,
       isPlaying: false,
-      currentTimeId: null,
-      visualizerId: null
+      currentTimeId: null
     }
   },
   created () {
@@ -106,7 +105,6 @@ export default {
     async loadAudio (audioBuffer) {
       this.decodedAudioBuffer =
         await this.audioContext.decodeAudioData(audioBuffer)
-      console.log(this.audioContext)
       this.source = this.audioContext.createBufferSource()
       this.source.buffer = this.decodedAudioBuffer
       this.source.loop = true
@@ -150,7 +148,7 @@ export default {
         if (this.source) {
           this.source.stop()
           cancelAnimationFrame(this.currentTimeId)
-          cancelAnimationFrame(this.visualizerId)
+          this.$refs.visualizer.stopRender()
         }
         const arrayBuffer = fileReader.result
         this.loadAudio(arrayBuffer)

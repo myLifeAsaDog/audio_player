@@ -6,9 +6,10 @@ const VISUALIZER_SIZE = 21 /** num. of visualizer bar  */
 
 export default {
   name: 'visualizer',
-  props: ['id', 'analyserNode'],
+  props: { analyserNode: AnalyserNode },
   data () {
     return {
+      visualizerId: null,
       canvasContext: null
     }
   },
@@ -26,11 +27,14 @@ export default {
       this.canvasContext.fillStyle = '#2e8b57'
 
       for (let i = 0; i < VISUALIZER_SIZE; i++) {
-        const barHeight = spectrums[i] / 3
+        const barHeight = spectrums[i] / 2.56
         this.canvasContext.fillRect(i * 11, clientHeight - barHeight, 10, barHeight)
       }
 
       this.visualizerId = requestAnimationFrame(this.renderCanvas)
+    },
+    stopRender () {
+      cancelAnimationFrame(this.visualizerId)
     }
   }
 }
