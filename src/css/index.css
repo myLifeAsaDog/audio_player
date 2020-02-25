@@ -27,23 +27,12 @@ main {
   padding: 20px 0;
   font-size: 26px;
 }
-meter {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: #666666;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;  
-}
-meter::-webkit-meter-bar {
-  display: block;
+.time-meter {
   width: 100%;
   height: 2px;
   background: #666666;
 }
-meter:-moz-meter-optimum::-moz-meter-bar,
-meter::-webkit-meter-optimum-value {
+.time-bar {
   background: #2e8b57;
-  width: 100% !important; /* !important required. to override the inline styles in WebKit. */
+  height: 2px;
 }

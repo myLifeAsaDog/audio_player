@@ -1,8 +1,15 @@
 <template>
   <main role="main">
     <visualizer ref="visualizer" :analyser-node="analyserNode" />
-    <time-count :current="elapsedTime" :duration="decodedAudioBuffer.duration" />
-    <meter :value="elapsedTime" min="0" :max="decodedAudioBuffer.duration||1" />
+    <time-count
+      :current="elapsedTime"
+      :duration="decodedAudioBuffer.duration"
+    />
+    <time-meter
+      :min="0"
+      :max="decodedAudioBuffer.duration"
+      :value="elapsedTime"
+    />
     <button type="button"
       @click="handleCickResumeAndSuspend">{{ buttonLabel }}</button>
     <p>
@@ -35,6 +42,7 @@
 <script>
 import Visualizer from './Visualizer'
 import TimeCount from './TimeCount'
+import TimeMeter from './TimeMeter'
 
 const DEFAULT_VOLUME = 0.3
 const DEFAULT_PAN = 0
@@ -43,7 +51,7 @@ const ANALYSER_FFT_SIZE = 64
 
 export default {
   name: 'index',
-  components: { Visualizer, TimeCount },
+  components: { Visualizer, TimeCount, TimeMeter },
   computed: {
     buttonLabel () {
       return this.isPlaying ? 'PAUSE' : 'PLAY'
@@ -131,7 +139,6 @@ export default {
       this.panNode.pan.value = e.target.value
     },
     handleCickResumeAndSuspend () {
-      console.log(this.source)
       if (this.audioContext.state === 'suspended') {
         this.audioContext.resume()
         this.isPlaying = true
