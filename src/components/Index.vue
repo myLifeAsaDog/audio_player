@@ -10,23 +10,27 @@
       :max="decodedAudioBuffer.duration"
       :value="elapsedTime"
     />
-    <button type="button"
-      @click="handleCickResumeAndSuspend">{{ buttonLabel }}</button>
-    <p>
-      <input
-        type="file" accept="audio/*"
-        @change="handleFileChange"
-      />
-    </p>
-    <div>
-      <label for="volume">volume</label>
-      <input
-        type="range" name="volume" min="0" max="1" step="0.1"
-        :value="gainNode.gain.value"
-        @change="handleVolume"
-      />
-      <span>{{ Math.floor(gainNode.gain.value * 100) }}/100</span>
-    </div>
+    <section class="">
+      <ul>
+        <li>REPEAT</li>
+        <li>TOOLS</li>
+        <li>
+          <label for="file">
+            <input name="file" type="file" accept="audio/*" @change="handleFileChange" />
+          </label>
+        </li>
+      </ul>
+      <button type="button"
+        @click="handleCickResumeAndSuspend">{{ buttonLabel }}</button>
+      <div>
+        <label for="volume">volume</label>
+        <input
+          type="range" name="volume" min="0" max="1" step="0.1"
+          :value="gainNode.gain.value"
+          @change="handleVolume"
+        />
+      </div>
+    </section>
     <div>
       <label for="pan">pan</label>
       <input
