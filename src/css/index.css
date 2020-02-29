@@ -7,6 +7,7 @@
   font-weight: normal;
   font-family: sans-serif;  
   line-height: 1;
+  outline: none;
 }
 ol, ul {
   list-style: none;
@@ -38,4 +39,70 @@ main {
 .time-bar {
   background: #2e8b57;
   height: 2px;
+}
+.controlPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.controlPanel > div {
+  display: flex;
+  justify-content: center;
+  width: 152px;
+}
+.repeatBtn {
+  display: block;
+  margin: 10px;
+  width: 24px;
+  height: 24px;
+  background-image: url('/static/images/sprite.png');
+  background-position: -24px -48px;
+  text-indent: -9999px;
+}
+.toolsBtn {
+  display: block;
+  margin: 10px;  
+  background-image: url('/static/images/sprite.png');
+  background-position: -48px -48px;
+  width: 24px;
+  height: 24px;
+  text-indent: -9999px;  
+}
+.fileUploadBtn {
+  display: block;
+  margin: 10px;
+  background-image: url('/static/images/sprite.png');
+  background-position: 0px -48px;
+  width: 24px;
+  height: 24px;
+  text-indent: -9999px;    
+}
+.button {
+  border-radius: 50%;    
+  padding: 20px;  
+  text-indent: -9999px;
+  border: solid 4px #ffffff;
+  background-color: transparent;
+  -webkit-appearance: none;  
+}
+.button span {
+  display: block;
+  width: 48px;
+  height: 48px;
+}
+.playBtn span {
+  background-image: url('/static/images/sprite.png');
+  background-position: 0px 0px;
+}
+.pauseBtn span {
+  background-image: url('/static/images/sprite.png');
+  background-position: -48px 0px;
+}
+.volumeLabel {
+  display: block;  
+  background-image: url('/static/images/sprite.png');
+  background-position: -72px -48px;
+  width: 16px;
+  height: 16px;
+  text-indent: -9999px;    
 }

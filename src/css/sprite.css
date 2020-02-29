@@ -1,0 +1,43 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+```html
+<i class="icon-home"></i>
+```
+*/
+.icon-data-transfer-upload-24 {
+  background-image: url(../../static/images/sprite.png);
+  background-position: 0px -48px;
+  width: 24px;
+  height: 24px;
+}
+.icon-media-play-48 {
+  background-image: url(../../static/images/sprite.png);
+  background-position: 0px 0px;
+  width: 48px;
+  height: 48px;
+}
+.icon-pause-48 {
+  background-image: url(../../static/images/sprite.png);
+  background-position: -48px 0px;
+  width: 48px;
+  height: 48px;
+}
+.icon-repeat-24 {
+  background-image: url(../../static/images/sprite.png);
+  background-position: -24px -48px;
+  width: 24px;
+  height: 24px;
+}
+.icon-settings-11-24 {
+  background-image: url(../../static/images/sprite.png);
+  background-position: -48px -48px;
+  width: 24px;
+  height: 24px;
+}
+.icon-volume-up-4-16 {
+  background-image: url(../../static/images/sprite.png);
+  background-position: -72px -48px;
+  width: 16px;
+  height: 16px;
+}

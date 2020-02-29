@@ -10,20 +10,17 @@
       :max="decodedAudioBuffer.duration"
       :value="elapsedTime"
     />
-    <section class="">
-      <ul>
-        <li>REPEAT</li>
-        <li>TOOLS</li>
-        <li>
-          <label for="file">
-            <input name="file" type="file" accept="audio/*" @change="handleFileChange" />
-          </label>
-        </li>
-      </ul>
-      <button type="button"
-        @click="handleCickResumeAndSuspend">{{ buttonLabel }}</button>
+    <section class="controlPanel">
       <div>
-        <label for="volume">volume</label>
+        <p class="repeatBtn">REPEAT</p>
+        <p class="toolsBtn">TOOLS</p>
+        <input class="fileUploadBtn" type="file" accept="audio/*" @change="handleFileChange" />
+      </div>
+      <button :class="buttonClass" class="button" type="button"
+        @click="handleCickResumeAndSuspend">
+        <span>{{ buttonLabel }}</span></button>
+      <div>
+        <label class="volumeLabel" for="volume">volume</label>
         <input
           type="range" name="volume" min="0" max="1" step="0.1"
           :value="gainNode.gain.value"
@@ -57,8 +54,8 @@ export default {
   name: 'index',
   components: { Visualizer, TimeCount, TimeMeter },
   computed: {
-    buttonLabel () {
-      return this.isPlaying ? 'PAUSE' : 'PLAY'
+    buttonClass () {
+      return this.isPlaying ? 'pauseBtn' : 'playBtn'
     }
   },
   data () {
