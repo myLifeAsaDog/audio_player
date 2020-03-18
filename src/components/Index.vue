@@ -19,7 +19,7 @@
       <button :class="buttonClass" class="button" type="button"
         @click="handleCickResumeAndSuspend">
         <span>{{ buttonLabel }}</span></button>
-      <div>
+      <div class="volumeGuage">
         <label class="volumeLabel" for="volume">volume</label>
         <input
           type="range" name="volume" min="0" max="1" step="0.1"
@@ -28,7 +28,7 @@
         />
       </div>
     </section>
-    <div>
+    <aside>
       <label for="pan">pan</label>
       <input
         type="range" name="pan" min="-1" max="1" step="0.1"
@@ -36,7 +36,7 @@
         @change="handlePan"
       />
       <span>{{ Math.floor(panNode.pan.value * 100) }}</span>
-    </div>
+    </aside>
   </main>
 </template>
 

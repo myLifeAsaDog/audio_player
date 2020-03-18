@@ -44,6 +44,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px 0;
 }
 .controlPanel > div {
   display: flex;
@@ -77,6 +78,24 @@ main {
   height: 24px;
   text-indent: -9999px;    
 }
+.volumeGuage > input {
+  width: 100px;
+}
+input[type='range'] {
+  height: 2px;
+  background: #eaeaea;
+  -webkit-appearance: none;
+  appearance: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  height: 16px;
+  width: 16px;
+  background: #ffffff;
+  border-radius: 100%;
+  box-shadow: -1px  1px 10px #333333;
+  -webkit-appearance: none;
+  appearance: none;
+}
 .button {
   border-radius: 50%;    
   padding: 20px;  
@@ -104,5 +123,6 @@ main {
   background-position: -72px -48px;
   width: 16px;
   height: 16px;
+  margin: 0 10px 0 0;
   text-indent: -9999px;    
 }
